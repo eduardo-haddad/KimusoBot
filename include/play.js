@@ -95,7 +95,6 @@ module.exports = {
         await playingMessage.react("🔊");
         await playingMessage.react("🔁");
         await playingMessage.react("🔀");
-        await playingMessage.react("⏹");
       } catch (error) {
         console.error(error);
       }
@@ -194,20 +193,6 @@ module.exports = {
             queue.songs = songs;
 
             queue.textChannel.send(i18n.__mf("shuffle.result", { author: user })).catch(console.error);
-            break;
-
-          case "⏹":
-            reaction.users.remove(user).catch(console.error);
-            if (!canModifyQueue(member)) return i18n.__("common.errorNotChannel");
-            queue.songs = [];
-            queue.textChannel.send(i18n.__mf("play.stopSong", { author: user })).catch(console.error);
-            try {
-              queue.connection.dispatcher.end();
-            } catch (error) {
-              console.error(error);
-              queue.connection.disconnect();
-            }
-            collector.stop();
             break;
 
           default:
