@@ -83,7 +83,8 @@ module.exports = {
       });
     dispatcher.setVolumeLogarithmic(queue.volume / 100);
 
-    if (!silent) {
+    // Disabled playing message
+    if (false) {
       try {
         var playingMessage = await queue.textChannel.send(
           i18n.__mf("play.startedPlaying", { title: song.title, url: song.url })
@@ -196,8 +197,9 @@ module.exports = {
             break;
 
           default:
-            reaction.users.remove(user).catch(console.error);
-            break;
+            // reaction.users.remove(user).catch(console.error);
+            // break;
+            console.log("")
         }
       });
 
